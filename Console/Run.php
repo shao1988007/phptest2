@@ -4,12 +4,10 @@
  *
  * example:
  * php path/to/Run.php
- *
  * 挂起消费
  *
  * example:
  * php path/to/Run.php 1
- *
  * 执行单个任务的最新子任务, 1指的是task表中的主键
  */
 

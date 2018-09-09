@@ -1,11 +1,18 @@
 <?php
-/**
- * 没写呢
- */
 return [
     'default'     => 'file',
 
     'connections' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Log
+        |--------------------------------------------------------------------------
+        |
+        | Available Drivers: "file"
+        | Available Channel: "daily", "stack"
+        |
+         */
 
         'file' => [
             'dir'     => TASKFLOW_ROOT . 'Log/',
