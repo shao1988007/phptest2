@@ -16,7 +16,7 @@ class Hander extends StreamHandler
     {
         $arr[] = '[' . date('Y-m-d H:i:s', time()) . ']';
         $arr[] = $record['levelStr'] . ':';
-        $arr[] = $record['message'];
+        $arr[] = var_export($record['message'], 1);
 
         if (isset($record['context'])) {
             $arr[] = var_export($record['context'], 1);

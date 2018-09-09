@@ -61,7 +61,13 @@ class Task
 
             $task->normal($task);
 
-            if (!$taskModel->where([['task_id', '=', $task->id], ['status', 'in', ['waiting', 'running']]])->first()) {
+            $subTaskModel = clone $subTask;
+
+            $where = [
+                ['task_id', '=', $task->id],
+            ];
+
+            if (!$subTaskModel->where($where)->whereIn('status', ['waiting', 'running'])->first()) {
                 $task->finished($task);
             }
 
