@@ -1,7 +1,4 @@
 <?php
-/**
- * 配置完成后执行init.sql
- */
 return [
     'default'     => 'mysql',
 

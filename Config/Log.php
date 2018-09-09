@@ -16,7 +16,7 @@ return [
 
         'file' => [
             'dir'     => TASKFLOW_ROOT . 'Log/',
-            'channel' => 'daily',
+            'channel' => 'stack',
         ],
 
     ],
