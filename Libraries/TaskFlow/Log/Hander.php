@@ -16,10 +16,10 @@ class Hander extends StreamHandler
     {
         $arr[] = '[' . date('Y-m-d H:i:s', time()) . ']';
         $arr[] = $record['levelStr'] . ':';
-        $arr[] = var_export($record['message'], 1);
+        $arr[] = var_export($record['message'], 1) . PHP_EOL;
 
         if (isset($record['context'])) {
-            $arr[] = var_export($record['context'], 1);
+            $arr[] = var_export($record['context'], 1) . PHP_EOL;
         }
 
         return implode(' ', $arr);

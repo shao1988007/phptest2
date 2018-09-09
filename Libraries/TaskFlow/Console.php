@@ -14,12 +14,22 @@ class Console
 {
     public static $capsule = null;
 
-    public static function run()
+    public static function run($taskId = null)
     {
         self::capsule();
         $where = [];
 
-        $tasks = TaskModel::where('status', 'normal')->get()->each(function ($row) {
+        if ($taskId) {
+            $where[] = ['id', '=', $taskId];
+        } else {
+            $where[] = ['status', '=', 'normal'];
+        }
+
+        $tasks = TaskModel::where($where)->get()->each(function ($row) {
+
+            if ($row->status != 'normal') {
+                return false;
+            }
 
             Task::setTask($row->name);
             $subTask = $row->subTasks()->orderByDesc('id')->first();

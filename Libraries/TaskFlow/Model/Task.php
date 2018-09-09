@@ -16,26 +16,42 @@ class Task extends Model
         return $this->hasMany(new SubTask, 'task_id', 'id');
     }
 
-    public function finished(Task $task)
+    public function finished(Task $task = null)
     {
+        if ($task == null) {
+            $task = $this;
+        }
+
         $task->status = 'finished';
         $task->save();
     }
 
-    public function pause(Task $task)
+    public function pause(Task $task = null)
     {
+        if ($task == null) {
+            $task = $this;
+        }
+
         $task->status = 'pause';
         $task->save();
     }
 
-    public function running(Task $task)
+    public function running(Task $task = null)
     {
+        if ($task == null) {
+            $task = $this;
+        }
+
         $task->status = 'running';
         $task->save();
     }
 
-    public function normal(Task $task)
+    public function normal(Task $task = null)
     {
+        if ($task == null) {
+            $task = $this;
+        }
+
         $task->status = 'normal';
         $task->save();
     }

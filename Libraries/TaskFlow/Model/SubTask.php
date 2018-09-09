@@ -24,26 +24,42 @@ class SubTask extends Model
         return self::create($query);
     }
 
-    public function running(SubTask $subTask)
+    public function running(SubTask $subTask = null)
     {
+        if ($subTask == null) {
+            $subTask = $this;
+        }
+
         $subTask->status = 'running';
         $subTask->save();
     }
 
-    public function pause(SubTask $subTask)
+    public function pause(SubTask $subTask = null)
     {
+        if ($subTask == null) {
+            $subTask = $this;
+        }
+
         $subTask->status = 'pause';
         $subTask->save();
     }
 
-    public function finished(SubTask $subTask)
+    public function finished(SubTask $subTask = null)
     {
+        if ($subTask == null) {
+            $subTask = $this;
+        }
+
         $subTask->status = 'finished';
         $subTask->save();
     }
 
-    public function retry(SubTask $subTask)
+    public function retry(SubTask $subTask = null)
     {
+        if ($subTask == null) {
+            $subTask = $this;
+        }
+
         $times                = $subTask->retry_times += 1;
         $subTask->retry_times = $times;
         $subTask->save();

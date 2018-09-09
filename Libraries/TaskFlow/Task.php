@@ -34,13 +34,13 @@ class Task
 
         Capsule::beginTransaction();
 
-        $task->running($task);
+        $task->running();
 
         if ($name != 'create' && $subTask->retry_times >= $subTask->max_times) {
 
             Log::debug('task pause ' . $task->name, ['id' => $task->id, 'times' => $subTask->max_times]);
 
-            $result = $task->pause($task) && $subTask->pause($subTask);
+            $result = $task->pause() && $subTask->pause();
 
             Capsule::commit();
 
@@ -50,16 +50,16 @@ class Task
         try {
 
             if ($name != 'create') {
-                $subTask->running($subTask);
+                $subTask->running();
             }
 
             $result = $taskObject->$name($task, $subTask);
 
             if ($name != 'create') {
-                $subTask->finished($subTask);
+                $subTask->finished();
             }
 
-            $task->normal($task);
+            $task->normal();
 
             $subTaskModel = clone $subTask;
 
@@ -68,7 +68,7 @@ class Task
             ];
 
             if (!$subTaskModel->where($where)->whereIn('status', ['waiting', 'running'])->first()) {
-                $task->finished($task);
+                $task->finished();
             }
 
             Capsule::commit();
@@ -80,7 +80,7 @@ class Task
             Capsule::rollBack();
 
             if ($name != 'create') {
-                $subTask->retry($subTask);
+                $subTask->retry();
             }
         }
 

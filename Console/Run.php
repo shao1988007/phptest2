@@ -17,6 +17,12 @@ if (!defined('TASKFLOW_ROOT')) {
 
 require TASKFLOW_ROOT . 'vendor/autoload.php';
 
+if (isset($_SERVER['argv'][1])) {
+    $taskId = $_SERVER['argv'][1];
+    TaskFlow\Libraries\TaskFlow\Console::run($taskId);
+    return true;
+}
+
 while (true) {
     sleep(1);
     TaskFlow\Libraries\TaskFlow\Console::run();
