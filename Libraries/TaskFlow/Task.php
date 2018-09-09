@@ -61,7 +61,7 @@ class Task
 
             $task->normal($task);
 
-            if ($result == false) {
+            if (!$taskModel->where([['task_id', '=', $task->id], ['status', 'in', ['waiting', 'running']]])->first()) {
                 $task->finished($task);
             }
 

@@ -26,29 +26,25 @@ class SubTask extends Model
 
     public function running(SubTask $subTask)
     {
-        Log::debug('subtask ' . $subTask->method . ' running', ['id' => $subTask->id]);
         $subTask->status = 'running';
         $subTask->save();
     }
 
     public function pause(SubTask $subTask)
     {
-        Log::debug('subtask ' . $subTask->method . ' pause', ['id' => $subTask->id]);
         $subTask->status = 'pause';
         $subTask->save();
     }
 
     public function finished(SubTask $subTask)
     {
-        Log::debug('subtask ' . $subTask->method . ' finished', ['id' => $subTask->id]);
         $subTask->status = 'finished';
         $subTask->save();
     }
 
     public function retry(SubTask $subTask)
     {
-        $times = $subTask->retry_times += 1;
-        Log::debug('subtask ' . $subTask->method . ' retry', ['id' => $subTask->id, 'times' => $times]);
+        $times                = $subTask->retry_times += 1;
         $subTask->retry_times = $times;
         $subTask->save();
     }

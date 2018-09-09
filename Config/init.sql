@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2018-09-08 15:21:34
+-- Generation Time: 2018-09-09 07:01:37
 -- 服务器版本： 5.7.23
 -- PHP Version: 5.6.37
 
@@ -11,12 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `taskflow`
@@ -49,7 +43,8 @@ CREATE TABLE `taskflow_task_sub` (
 --
 ALTER TABLE `taskflow_task_sub`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `task_id_method_unique` (`task_id`,`method`) USING BTREE;
+  ADD UNIQUE KEY `task_id_method_unique` (`task_id`,`method`) USING BTREE,
+  ADD KEY `task_id_status_index` (`task_id`,`status`) USING BTREE;
 
 --
 -- 在导出的表使用AUTO_INCREMENT
@@ -61,10 +56,6 @@ ALTER TABLE `taskflow_task_sub`
 ALTER TABLE `taskflow_task_sub`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
 -- phpMyAdmin SQL Dump
